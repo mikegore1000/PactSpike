@@ -1,0 +1,35 @@
+{
+  "provider": {
+    "name": "Customer API"
+  },
+  "consumer": {
+    "name": "CLR Client"
+  },
+  "interactions": [
+    {
+      "description": "A GET request",
+      "provider_state": "A customer with id '123'",
+      "request": {
+        "method": "get",
+        "path": "/customers/123",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "id": 123,
+          "firstName": "Mike",
+          "lastName": "Gore"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "1.1.0"
+  }
+}
