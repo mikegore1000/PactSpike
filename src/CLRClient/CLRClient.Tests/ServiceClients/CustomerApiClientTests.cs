@@ -62,6 +62,8 @@ namespace CLRClient.Tests.ServiceClients
             Assert.That(result.Id, Is.EqualTo(123));
             Assert.That(result.FirstName, Is.EqualTo("Mike"));
             Assert.That(result.LastName, Is.EqualTo("Gore"));
+
+            pact.MockProviderService.VerifyInteractions();
         }
     }
 }
