@@ -4,6 +4,7 @@ using PactNet;
 
 namespace CustomerService.Tests
 {
+    [TestFixture]
     public class CustomerServiceTests
     {
         [Test]
