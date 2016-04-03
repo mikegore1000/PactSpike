@@ -13,14 +13,14 @@ namespace CustomerService.Tests
                 setUp: () => { },
                 tearDown: () => { });
 
-            pactVerifier.ProviderState("A customer with id '123'");
+            //pactVerifier.ProviderState("A customer with id '123'");
 
             using (var testServer = TestServer.Create<CustomerServiceStartup>())
             {
                 pactVerifier
                     .ServiceProvider("Customer Service API", testServer.HttpClient)
                     .HonoursPactWith("CLR Client")
-                    .PactUri("../../../../pacts/clr_client-customer_api.json")
+                    .PactUri("../../../../pacts")
                     .Verify();
             }
         }

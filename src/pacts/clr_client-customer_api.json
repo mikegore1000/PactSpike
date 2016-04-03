@@ -8,7 +8,6 @@
   "interactions": [
     {
       "description": "A GET request",
-      "provider_state": "A customer with id '123'",
       "request": {
         "method": "get",
         "path": "/customers/123",
@@ -26,6 +25,19 @@
           "firstName": "Mike",
           "lastName": "Gore"
         }
+      }
+    },
+    {
+      "description": "Another GET",
+      "request": {
+        "method": "get",
+        "path": "/version",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200
       }
     }
   ],

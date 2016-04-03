@@ -26,6 +26,14 @@ namespace CLRClient.ServiceClients
 
             return JsonConvert.DeserializeObject<Customer>(json);
         }
+
+        public async Task GetVersion()
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/version");
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var response = await client.SendAsync(request);
+        }
     }
 
     public class Customer

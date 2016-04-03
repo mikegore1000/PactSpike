@@ -30,7 +30,7 @@ namespace CLRClient.Tests.ServiceClients
         public async Task Sample()
         {
             mockProviderService
-                .Given("A customer with id '123'")
+                //.Given("A customer with id '123'")
                 .UponReceiving("A GET request")
                 .With(new ProviderServiceRequest
                 {
@@ -56,12 +56,29 @@ namespace CLRClient.Tests.ServiceClients
                     }
                 });
 
-            var client = new CustomerApiClient(pact.MockProviderServiceBaseUri);
-            var result = await client.GetCustomer(123);
+            mockProviderService
+                .UponReceiving("Another GET")
+                .With(new ProviderServiceRequest
+                {
+                    Method = HttpVerb.Get,
+                    Path = "/version",
+                    Headers = new Dictionary<string, string>
+                    {
+                        {"Accept", "application/json"}
+                    }
+                })
+                .WillRespondWith(new ProviderServiceResponse
+                {
+                    Status = 200
+                });
 
-            Assert.That(result.Id, Is.EqualTo(123));
-            Assert.That(result.FirstName, Is.EqualTo("Mike"));
-            Assert.That(result.LastName, Is.EqualTo("Gore"));
+            var client = new CustomerApiClient(pact.MockProviderServiceBaseUri);
+            //var result = await client.GetCustomer(123);
+            await client.GetVersion();
+
+            //Assert.That(result.Id, Is.EqualTo(123));
+            //Assert.That(result.FirstName, Is.EqualTo("Mike"));
+            //Assert.That(result.LastName, Is.EqualTo("Gore"));
 
             pact.MockProviderService.VerifyInteractions();
         }
